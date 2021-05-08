@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap');
+@import "./variables.scss";
+
+.hidden {
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+
+.place-select {
+    width: 20vw;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    padding: 1vw;
+    border-radius: 6px;
+    margin-bottom: 2vh;
+}
+
+#search-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+#roundtrip {
+    margin-right: 1vw;
+}
+
+
+.search-input {
+    margin-right: 1vw;
+}
+
+button {
+    padding: 10px 20px;
+    border-color: transparent;
+    border-radius: $border-radius;
+    background-color: $white-color;
+    color: $main-color;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    border: $btn-border;
+}
+
+#search {
+    background-color: $main-color;
+    font-weight: 800;
+    color: $white-color;
+    padding: 0 20px;
+    text-transform: uppercase;
+}
+
+#search:hover {
+    background-color: $light-blue-color;
+    color: $white-color;
+}
+
+.btn_buy {
+    background-color: $main-color;
+    color: $white-color;
+}

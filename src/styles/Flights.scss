@@ -1,0 +1,28 @@
+@import "./variables.scss";
+
+.flights {
+    color: $black-color;
+    margin-top: 2vh;
+   
+    .flight {
+        background-color: $white-color;
+        height: 100px;
+        border-radius: 10px;
+        padding: 10px 30px;
+        margin-bottom: 2vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+}
+
+.flights__no-results {
+    background-color: $white-color;
+    color: $light-blue-color;
+    padding: 10px;
+    border-radius: $border-radius;
+    text-align: center;
+    margin-top: 10px;
+}
+

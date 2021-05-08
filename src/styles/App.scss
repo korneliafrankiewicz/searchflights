@@ -1,0 +1,32 @@
+@import "./fonts.scss";
+@import "./variables.scss";
+
+
+body {
+  // background: linear-gradient(130deg, rgba(249,249,249,1) 0%, rgba(235,18,123,1) 28%, rgba(121,21,105,1) 80%, rgba(0,206,255,1) 100%);
+  background-color: $main-color;
+  height: 100%;
+  width: 100%;
+  font-family: $main-font;
+  .container > h1 {
+    color: $white-color;
+    font-size: 64px;
+    font-weight: 900;
+    padding-top: 5%;
+    padding-bottom: 2%;
+    font-weight: 900;
+  }
+  
+  .App {
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 2%;
+    height: 100vh;
+  }
+  
+  .container {
+    max-width: 1352px;
+    margin: 0 auto;
+  }
+}
+

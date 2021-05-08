@@ -1,25 +1,19 @@
-import { findByPlaceholderText } from "@testing-library/dom";
+import React from 'react';
+import '../styles/App.scss';
+import SearchBar from './SearchBar';
+import Header from './Header'
 
-
-import {FlightInfo} from "./FlightInfo";
-
-const App =() => <FlightInfo/>
-
-
-// function App() {
-//   function handleClick(){
-//     console.log("siema")
-//   }
-
-//   return(
-//     <>
-//     <Button type="warning" text="Counter" onClick = {handleClick}/>
-//     <Button type="info" text="Counter" onClick = {handleClick}/>
-//     <Button type="error" text="Counter" onClick = {handleClick}/>
-//     <Button type="success" text="Counter" onClick = {handleClick}/>;
-//     </> 
-//   )
-
-// }
+function App() {
+  return (
+    <div className="App">
+      <Header title="SkyIsTheLimit" />
+      <div className="container">
+        <h1>Find the cheapest price <br /><span>of your flight!</span></h1>
+        <SearchBar />
+      </div>
+    </div>
+  );
+}
 
 export default App;
+
