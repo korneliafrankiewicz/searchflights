@@ -1,5 +1,5 @@
 # Application for searching flights
-(./src/images/readme.jpg)
+![Background ocean video](./src/images/readme.jpg)
 
 
 # Getting Started with Create React App
