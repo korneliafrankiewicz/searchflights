@@ -4,10 +4,18 @@
 
 body {
   // background: linear-gradient(130deg, rgba(249,249,249,1) 0%, rgba(235,18,123,1) 28%, rgba(121,21,105,1) 80%, rgba(0,206,255,1) 100%);
-  background-color: $main-color;
+  // background-color: $main-color;
   height: 100%;
-  width: 100%;
+  width: 100vw;
   font-family: $main-font;
+
+  .videoTag {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  z-index: -5;
+}
   .container > h1 {
     color: $white-color;
     font-size: 64px;
@@ -15,6 +23,7 @@ body {
     padding-top: 5%;
     padding-bottom: 2%;
     font-weight: 900;
+    text-align: right;
   }
   
   .App {

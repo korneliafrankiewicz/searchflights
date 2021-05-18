@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/SearchBar.scss';
-import Flights from './Flights';
+import './SearchBar.scss';
+import Flights from '../Flights/Flights';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
@@ -18,10 +18,18 @@ function SearchBar() {
     const [showInboundInput, setShowInboundInput] = useState(false)
 
     const currency = "PLN"
-    // const [currencies, setCurrencies] = useState([])
+    const [currencies, setCurrencies] = useState([])
 
     const [flights, setFlights] = useState([])
     const [showFlights,setShowFlights] = useState(false)
+
+        // Sort State Variables
+        const [sortAsc, setSortAsc] = useState(true)
+        const [sortType, setSortType] = useState([])
+        const sortOptions = [
+            { label: "Price: Low to High", value: "true" },
+            { label: "Price: High to Low", value: "false" }
+        ]
 
     const requestOptions = {
         method: 'GET',
@@ -51,10 +59,11 @@ function SearchBar() {
             let response = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/${currency}/en-US/${originValue}/${destValue}/${toString(outboundDate)}/?` 
             + new URLSearchParams(localInboundDate.toString()), requestOptions)
             response = await response.json()
-            console.log(response)
+            // console.log(response)
             setFlights(response.Quotes)
+            setSortType(sortOptions[0])
+            setSortAsc(true)
         }
-
         fetchFlights()
         setShowFlights(true)
     }
@@ -102,6 +111,29 @@ function SearchBar() {
         fetchDests()
     }
 
+    const getCurrencies = () => {
+        async function fetchCurrencies() {
+            const reqOptions = {
+                method: 'GET',
+                headers: {
+                    "x-rapidapi-key": `${process.env.REACT_APP_API_KEY}`,
+                    "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+                    "useQueryString": true
+                }
+            }
+            let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/reference/v1.0/currencies", reqOptions)
+            response = await response.json()
+            setCurrencies(response.Currencies)
+        }
+
+        fetchCurrencies()
+    }
+
+    /* Fetch list of currencies when state changes instead of every render */
+    useEffect(() => {
+        getCurrencies()
+    }, [])
+
     // Input/Select Components
     const InboundInput = () => {
         return (
@@ -109,6 +141,7 @@ function SearchBar() {
                 <label htmlFor="inboundDate" className="hidden">Return Date:</label>
                 <DatePicker 
                     id="inboundDate"
+                    className="date-input"
                     name="inboundDate"
                     placeholderText="Return Date" 
                     todayButton="Today"
@@ -121,9 +154,54 @@ function SearchBar() {
         )
     }
 
+    const SortSelect = () => {
+        /* Sorts according to option selected, then sets sortType and sortAsc */
+        const handleSortChange = option => {
+            // If the option is the different from last time, then reverse sort
+            option.value === sortAsc ? setFlights(flights) : setFlights(flights.slice().reverse())
+            setSortAsc(option.value)
+            setSortType(option)
+        }
+        
+        return (
+            <div>
+                <label htmlFor="sortSelect" className="visuallyHidden"></label>
+                <Select 
+                    id="sortSelect"
+                    name="sortSelect"
+                    isSearchable="true"
+                    value={sortType}
+                    defaultValue={sortOptions[0]}
+                    onChange={handleSortChange}
+                    options={sortOptions}
+                    placeholder="Sort"
+                />
+            </div>
+        )
+    }
+
 
     return (
         <div className="searchBar">
+
+            <div className="search-options">
+                
+                <div id="leftOptions">
+                    <button id="roundtrip"
+                            onClick={e => setShowInboundInput(false)}>
+                            One Way ticket
+                    </button>
+                    <button id="oneWay"
+                        onClick={e => setShowInboundInput(true)}>
+                        Return ticket
+                    </button>
+                </div>
+
+    
+
+
+
+            </div>
             <form onSubmit={handleSubmit}>
                 <div id="originInput" className="search-input">
                     <label htmlFor="originSelect" className="hidden">Origin:</label>
@@ -164,6 +242,7 @@ function SearchBar() {
                     <label htmlFor="outboundDate" className="hidden">Departure Date:</label>
                     <DatePicker 
                         id="outboundDate"
+                        className="date-input"
                         name="outboundDate"
                         placeholderText="Departure Date" 
                         todayButton="Today"
@@ -177,18 +256,15 @@ function SearchBar() {
                 <button id="search">Search</button>
             </form>
 
-            <div id="search-options">
-                <div id="leftOptions">
-                    <button id="roundtrip"
-                            onClick={e => setShowInboundInput(true)}>
-                            Return ticket
-                    </button>
-                    <button id="oneWay"
-                        onClick={e => setShowInboundInput(false)}>
-                        One Way ticket
-                    </button>
+
+            <div className="search-options">
+            <div id="sort-prices">
+                    {/* Sort Type Selector */}
+                    { showFlights ? <SortSelect /> : <></> }
                 </div>
             </div>
+
+
 
             {/* Flight List */}
             { showFlights ? <Flights flights={flights}/> : <h2 className="flights__no-results">You didn't choose any flight</h2> }

@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap');
-@import "./variables.scss";
+@import "../../styles/variables.scss";
+@import "../../styles/fonts.scss";
 
 .hidden {
     border: 0;
@@ -25,10 +25,11 @@ form {
     margin-bottom: 2vh;
 }
 
-#search-options {
+.search-options {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
+    margin-bottom: 2vh;
 }
 
 
@@ -63,6 +64,11 @@ button:hover {
     color: $white-color;
     padding: 0 20px;
     text-transform: uppercase;
+
+}
+
+#sort-prices {
+    width: 200px;
 }
 
 #search:hover {
@@ -74,3 +80,14 @@ button:hover {
     background-color: $main-color;
     color: $white-color;
 }
+
+.date-input {
+    color: $gray-color;
+    padding: 5px;
+    margin: 5px 0;
+    outline: none;
+  }
+  .date-input:focus,
+  .dateinput:active {
+    border: 2px solid $blue-color;
+  }
