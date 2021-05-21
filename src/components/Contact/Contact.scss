@@ -1,0 +1,45 @@
+@import "../../styles/variables.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.contact-form-wrapper {
+    max-width: 1000px !important;
+    background-color: $white-color;
+    z-index: 5;
+    border-radius: $border-radius;
+    display: flex;
+    margin-bottom: 20px !important;
+    justify-content: space-around;
+    align-items: center;
+
+    @include tablet {
+        flex-direction: column;
+    }
+
+    .contact-form {
+        display: flex;
+        align-items: center;
+        color: $light-blue-color;
+        @include tablet {
+            flex-direction: column;
+
+            &-title {
+                display: flex;
+            }
+        }
+
+        .name, .email, .phone, .submit-login{
+            display: flex;
+            justify-content: space-between;
+            margin: 12px;
+
+            input {
+                padding: 5px;
+            }
+        }
+
+        .submit-login {
+            cursor: pointer;
+        }
+    }
+}

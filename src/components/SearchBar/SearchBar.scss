@@ -1,28 +1,30 @@
 @import "../../styles/variables.scss";
 @import "../../styles/fonts.scss";
-
-.hidden {
-    border: 0;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-}
+@import "../../styles/mixins.scss";
 
 
 .place-select {
     width: 20vw;
+
+    @include mobile {
+        width: 70vw;
+        margin-bottom: 5px;
+    }
 }
 
-form {
+.searchbar-form {
     display: flex;
     flex-direction: row;
     background-color: white;
-    padding: 1vw;
-    border-radius: 6px;
+    padding: 15px 0;
+    border-radius: $border-radius;
     margin-bottom: 2vh;
+    justify-content: space-around;
+
+    @include mobile {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .search-options {
@@ -30,12 +32,12 @@ form {
     flex-direction: row;
     justify-content: flex-end;
     margin-bottom: 2vh;
+
+    #roundtrip {
+        margin-right: 1vw;
+    }   
 }
 
-
-#roundtrip {
-    margin-right: 1vw;
-}
 
 
 .search-input {
@@ -52,18 +54,25 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition-duration: 0.4s;
+
+    &:hover {
+        border: $btn-border;
+    }
 }
 
-button:hover {
-    border: $btn-border;
-}
 
-#search {
+
+.main-button {
     background-color: $main-color;
     font-weight: 800;
     color: $white-color;
     padding: 0 20px;
     text-transform: uppercase;
+
+    @include mobile {
+        margin: 10px 0;
+        padding: 10px 20px;
+    }
 
 }
 
@@ -86,6 +95,11 @@ button:hover {
     padding: 5px;
     margin: 5px 0;
     outline: none;
+
+    @include mobile {
+        width: 70vw;
+        text-align: center;
+    }
   }
   .date-input:focus,
   .dateinput:active {

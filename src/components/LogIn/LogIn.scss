@@ -1,0 +1,15 @@
+@import "../../styles/variables.scss";
+@import "../../styles/fonts.scss";
+
+.login-icon {
+    color: $white-color;
+    font-size: 25px;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5px;
+
+    #user {
+        cursor: pointer;
+    }
+
+}

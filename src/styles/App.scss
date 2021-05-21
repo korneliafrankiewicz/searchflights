@@ -1,5 +1,6 @@
 @import "./fonts.scss";
 @import "./variables.scss";
+@import "./mixins.scss";
 
 
 body {
@@ -9,33 +10,59 @@ body {
   width: 100vw;
   font-family: $main-font;
 
-  .videoTag {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-
-  z-index: -5;
-}
-  .container > h1 {
-    color: $white-color;
-    font-size: 64px;
-    font-weight: 900;
-    padding-top: 5%;
-    padding-bottom: 2%;
-    font-weight: 900;
-    text-align: right;
+  @include mobile {
+    background-color: $main-color;
   }
-  
+
   .App {
     padding-left: 4%;
     padding-right: 4%;
     padding-top: 2%;
     height: 100vh;
-  }
+
+    h1 {
+      color: $white-color;
+      font-size: 64px;
+      font-weight: 900;
+      padding-bottom: 2%;
+      font-weight: 900;
+      text-align: right;
   
+      @include mobile {
+        font-size: 46px;
+      }
+    }
+
+    .videoTag {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      z-index: -5;
+    
+      @include mobile {
+        visibility: hidden;
+      }
+  }
+
   .container {
     max-width: 1352px;
     margin: 0 auto;
+
+    @include tablet {
+      width: 100%;
+      padding: 0 15px;
+    }
+  }
+}
+ 
+  .hidden {
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
   }
 }
 

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './SearchBar.scss';
+import "../../styles/App.scss"
 import Flights from '../Flights/Flights';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+
+
 
 function SearchBar() { 
     const [originPlaces,setOriginPlaces] = useState([])
@@ -11,14 +14,14 @@ function SearchBar() {
     const [originValue, setOriginValue] = useState("")
     const [destValue, setDestValue] = useState("")
 
+
     // Daty z Datepickera
     const [outboundDate,setOutboundDate] = useState(new Date())
     const [inboundDate, setInboundDate] = useState(new Date())
     //Stanem domyślnym jest podróż w dwie strony
     const [showInboundInput, setShowInboundInput] = useState(false)
 
-    const currency = "PLN"
-    const [currencies, setCurrencies] = useState([])
+    const currency = "USD"
 
     const [flights, setFlights] = useState([])
     const [showFlights,setShowFlights] = useState(false)
@@ -30,6 +33,7 @@ function SearchBar() {
             { label: "Price: Low to High", value: "true" },
             { label: "Price: High to Low", value: "false" }
         ]
+   
 
     const requestOptions = {
         method: 'GET',
@@ -90,6 +94,8 @@ function SearchBar() {
         fetchOrigins()
     }
 
+ 
+
     // Destination Handler Functions
     /* Ustawienie dest*/
     const handleDestChange = (option, actionMeta) => {
@@ -111,28 +117,28 @@ function SearchBar() {
         fetchDests()
     }
 
-    const getCurrencies = () => {
-        async function fetchCurrencies() {
-            const reqOptions = {
-                method: 'GET',
-                headers: {
-                    "x-rapidapi-key": `${process.env.REACT_APP_API_KEY}`,
-                    "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-                    "useQueryString": true
-                }
-            }
-            let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/reference/v1.0/currencies", reqOptions)
-            response = await response.json()
-            setCurrencies(response.Currencies)
-        }
+    // const getCurrencies = () => {
+    //     async function fetchCurrencies() {
+    //         const reqOptions = {
+    //             method: 'GET',
+    //             headers: {
+    //                 "x-rapidapi-key": `${process.env.REACT_APP_API_KEY}`,
+    //                 "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+    //                 "useQueryString": true
+    //             }
+    //         }
+    //         let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/reference/v1.0/currencies", reqOptions)
+    //         response = await response.json()
+    //         setCurrencies(response.Currencies)
+    //     }
 
-        fetchCurrencies()
-    }
+    //     fetchCurrencies()
+    // }
 
-    /* Fetch list of currencies when state changes instead of every render */
-    useEffect(() => {
-        getCurrencies()
-    }, [])
+    // /* Fetch list of currencies when state changes instead of every render */
+    // useEffect(() => {
+    //     getCurrencies()
+    // }, [])
 
     // Input/Select Components
     const InboundInput = () => {
@@ -183,9 +189,7 @@ function SearchBar() {
 
     return (
         <div className="searchBar">
-
-            <div className="search-options">
-                
+            <div className="search-options">               
                 <div id="leftOptions">
                     <button id="roundtrip"
                             onClick={e => setShowInboundInput(false)}>
@@ -197,12 +201,9 @@ function SearchBar() {
                     </button>
                 </div>
 
-    
-
-
 
             </div>
-            <form onSubmit={handleSubmit}>
+            <form className="searchbar-form" onSubmit={handleSubmit}>
                 <div id="originInput" className="search-input">
                     <label htmlFor="originSelect" className="hidden">Origin:</label>
                     <Select 
@@ -253,9 +254,8 @@ function SearchBar() {
                     />
                 </div>
                 { showInboundInput ? <InboundInput /> : <></> }
-                <button id="search">Search</button>
+                <button id="search" className="main-button">Search</button>
             </form>
-
 
             <div className="search-options">
             <div id="sort-prices">
@@ -263,8 +263,6 @@ function SearchBar() {
                     { showFlights ? <SortSelect /> : <></> }
                 </div>
             </div>
-
-
 
             {/* Flight List */}
             { showFlights ? <Flights flights={flights}/> : <h2 className="flights__no-results">You didn't choose any flight</h2> }
