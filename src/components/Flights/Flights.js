@@ -7,7 +7,6 @@ import CartImg from "../../images/shopping-cart.png"
 const Flight = (props) => {
     
     const [cart, setCart] = useState([]);
-    const [sumCart, setSumCart] = useState(0);
     const handleAddtoCart = () => {
         setCart(prev => [...prev, cart]);
     }
@@ -53,12 +52,6 @@ function Flights(props) {
              </div>
              </>
         )
-    // } else if(props.flights.length === "undefined"){
-    //     return(
-    //         <div className="flights">
-    //              <h2 className="flights__no-results">Sorry, we found no flights. Change your search criteria, please.</h2>
-    //          </div>
-    //     )
     }
     else {
         return(

@@ -11,18 +11,18 @@ export const Contact= () => {
 
     const { isValid, errorMessages } = Validate(name, email, phone);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
+    const handleSubmit = () => {
         if (isValid){
             alert("You're logged in!")
+        } if(!isValid){
+            // alert(setFormInvalid(errorMessages));
+            alert("Data is not valid")
         } else {
-            alert(setFormInvalid(errorMessages));
+            alert("Login in, please")
         }
 
         console.log(errorMessages)
     }
-
 
 
     return (

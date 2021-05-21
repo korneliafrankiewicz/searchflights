@@ -8,13 +8,13 @@ import ImportantIcon from "../../images/important.png";
 
 const Footer = () => {
     return (
-        <div className="footer">
-            <a className="footer-icon" href="#"><img src={EmailIcon} width="50px" alt="email"/></a>
-            <a className="footer-icon" href="#"><img src={TelephoneIcon} width="50px" alt="telephone"/></a>
-            <a className="footer-icon" href="#"><img src={PlaceholderIcon} width="50px" alt="placeholder"/></a>
-            <a className="footer-icon" href="#"><img src={ImportantIcon} width="50px" alt="important"/></a>
-            <a className="footer-icon" href="#"><img src={MoreIcon} width="50px" alt="more"/></a>
-        </div>
+        <footer className="footer">
+            <a className="footer-icon" href="#"><img src={EmailIcon}  alt="email"/></a>
+            <a className="footer-icon" href="#"><img src={TelephoneIcon} alt="telephone"/></a>
+            <a className="footer-icon" href="#"><img src={PlaceholderIcon}  alt="placeholder"/></a>
+            <a className="footer-icon" href="#"><img src={ImportantIcon}  alt="important"/></a>
+            <a className="footer-icon" href="#"><img src={MoreIcon} alt="more"/></a>
+        </footer>
     )
 }
 

@@ -4,7 +4,7 @@
 
 .footer {
     // background-color: $main-color;
-    position: fixed;
+    position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
     bottom: 0;
@@ -14,8 +14,14 @@
     justify-content: space-around;
 
     @include mobile {
-        position: absolute;
-        bottom: 0;
-        width: 400px;
+        display: none;
+    }
+
+    img {
+        width: 50px;
+
+        @include mobile {
+            width: 30px;
+        }
     }
 }

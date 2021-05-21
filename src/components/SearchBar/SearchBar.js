@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import './SearchBar.scss';
 import "../../styles/App.scss"
 import Flights from '../Flights/Flights';
@@ -117,28 +117,6 @@ function SearchBar() {
         fetchDests()
     }
 
-    // const getCurrencies = () => {
-    //     async function fetchCurrencies() {
-    //         const reqOptions = {
-    //             method: 'GET',
-    //             headers: {
-    //                 "x-rapidapi-key": `${process.env.REACT_APP_API_KEY}`,
-    //                 "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-    //                 "useQueryString": true
-    //             }
-    //         }
-    //         let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/reference/v1.0/currencies", reqOptions)
-    //         response = await response.json()
-    //         setCurrencies(response.Currencies)
-    //     }
-
-    //     fetchCurrencies()
-    // }
-
-    // /* Fetch list of currencies when state changes instead of every render */
-    // useEffect(() => {
-    //     getCurrencies()
-    // }, [])
 
     // Input/Select Components
     const InboundInput = () => {
@@ -161,9 +139,7 @@ function SearchBar() {
     }
 
     const SortSelect = () => {
-        /* Sorts according to option selected, then sets sortType and sortAsc */
         const handleSortChange = option => {
-            // If the option is the different from last time, then reverse sort
             option.value === sortAsc ? setFlights(flights) : setFlights(flights.slice().reverse())
             setSortAsc(option.value)
             setSortType(option)
@@ -190,7 +166,7 @@ function SearchBar() {
     return (
         <div className="searchBar">
             <div className="search-options">               
-                <div id="leftOptions">
+                <div id="left-options">
                     <button id="roundtrip"
                             onClick={e => setShowInboundInput(false)}>
                             One Way ticket

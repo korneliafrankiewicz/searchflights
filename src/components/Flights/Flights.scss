@@ -1,8 +1,10 @@
 @import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
 
 .flights {
     color: $black-color;
     margin-top: 2vh;
+    position: relative;
 
     h3 {
         color: $main-color;
@@ -24,6 +26,10 @@
 
             #money, #cart {
                 margin-right: 10px;
+
+                @include small-mobile {
+                    // visibility: hidden !important;
+                }
             }
         }
     }
