@@ -1,6 +1,9 @@
 # Application for searching flights
 ![Background ocean video](./src/images/readme.JPG)
 
+# Live version:
+https://searchflights.netlify.app/#/
+
 
 # Getting Started with Create React App
 
