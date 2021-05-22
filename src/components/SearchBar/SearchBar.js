@@ -27,7 +27,7 @@ function SearchBar() {
     const [showFlights,setShowFlights] = useState(false)
 
         // Sort State Variables
-        const [sortAsc, setSortAsc] = useState(true)
+        const [sortVal, setSortVal] = useState(true)
         const [sortType, setSortType] = useState([])
         const sortOptions = [
             { label: "Price: Low to High", value: "true" },
@@ -66,7 +66,7 @@ function SearchBar() {
             // console.log(response)
             setFlights(response.Quotes)
             setSortType(sortOptions[0])
-            setSortAsc(true)
+            setSortVal(true)
         }
         fetchFlights()
         setShowFlights(true)
@@ -133,6 +133,8 @@ function SearchBar() {
                     onChange={date => setInboundDate(date)}
                     minDate={new Date()}
                     required
+                    format = "dd-MM-y"
+        
                 />
             </div>
         )
@@ -140,8 +142,8 @@ function SearchBar() {
 
     const SortSelect = () => {
         const handleSortChange = option => {
-            option.value === sortAsc ? setFlights(flights) : setFlights(flights.slice().reverse())
-            setSortAsc(option.value)
+            option.value === sortVal ? setFlights(flights) : setFlights(flights.slice().reverse())
+            setSortVal(option.value)
             setSortType(option)
         }
         
@@ -226,7 +228,7 @@ function SearchBar() {
                         selected={outboundDate}
                         onChange={date => setOutboundDate(date)}
                         minDate={new Date()}
-                        required
+                        format = "dd-MM-y"
                     />
                 </div>
                 { showInboundInput ? <InboundInput /> : <></> }

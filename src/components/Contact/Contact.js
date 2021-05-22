@@ -46,7 +46,7 @@ export const Contact= () => {
                 </label>
 
                 <div className="submit-login">
-                <img id="check" src={CheckIcon} width="50px" alt="check" onClick={handleSubmit}/> 
+                <img id="check" src={CheckIcon} width="40px" alt="check" onClick={handleSubmit}/> 
                 </div>
                 </form>
   </div>

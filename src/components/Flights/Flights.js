@@ -53,6 +53,13 @@ function Flights(props) {
              </>
         )
     }
+    // else if(!props.flights) {
+    //     return(
+    //         <div className="flights">
+    //              <h2 className="flights__no-results">Sorry, we found no flights. Change your search criteria, please.</h2>
+    //          </div>
+    //     )
+    // }
     else {
         return(
             <div className="flights">
